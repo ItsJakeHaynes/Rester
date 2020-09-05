@@ -11,7 +11,7 @@
   [radius]="radius"
   [showTitle]="false"
   [showSubtitle]="false"
-  [showUnits]="true"
+  [showUnits]="false"
   [outerStrokeWidth]="16"
   [outerStrokeColor]="'#fd5f00'"
   [showZeroOuterStroke]="false"
@@ -22,6 +22,18 @@
   [showInnerStroke]="false"
   ></circle-progress>
 
-  <p>{{ elasped.h }}:{{elasped.m}}:{{elasped.s}}</p>
+  <p>{{elapsed.h}}:{{elapsed.m}}:{{elapsed.s}}</p>
 
+  <ion-fab vertical= "bottom" horizontal = "end" slot = "fixed">
+    <ng-container *ngIf="timer == false; else running">
+      <ion-fab-button (click)="startTime()">
+        <ion-icon name="play-outline"></ion-icon>
+      </ion-fab-button>
+    </ng-container>
+    <ng-template #running>
+      <ion-fab-button (click)="stopTime()">
+        <ion-icon name="stop-outline"></ion-icon>
+      </ion-fab-button>
+    </ng-template>
+  </ion-fab>
 </ion-content>
